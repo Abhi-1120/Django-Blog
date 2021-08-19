@@ -1,0 +1,43 @@
+{% extends 'home/base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+{% block contactactive %} active {% endblock contactactive %}
+
+{% block body %}
+<style>
+body {
+  background-color: #353030;
+  background-image: url("/static/home/img/map-image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #ffffff;
+}
+
+</style>
+
+<div class="container mt-4">
+ <h1 style="text-align: center;">Contact Us</h1>
+    <div class="contact-form" style="margin-inline: 225px;">
+ <form method="post" action="/contact/">
+     {% csrf_token %}
+   <div class="mb-3">
+     <label for="name" class="form-label">Name</label>
+     <input class="form-control" id="name" name="name" type="text">
+   </div>
+  <div class="mb-3">
+     <label for="exampleInputEmail1" class="form-label">Email address</label>
+     <input type="email" class="form-control" name="email" id="exampleInputEmail1">
+   </div>
+  <div class="mb-3">
+     <label for="phone" class="form-label">Phone Number</label>
+     <input class="form-control" id="phone" name="phone" type="text">
+   </div>
+     <div class="mb-3">
+        <label for="content" class="form-label">Describe Your Issue: </label>
+        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+     </div>
+   <button type="submit" class="btn btn-danger">Submit</button>
+ </form>
+    </div>
+</div>
+ {% endblock %}

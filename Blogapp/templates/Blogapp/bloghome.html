@@ -1,0 +1,55 @@
+{% extends 'Blogapp/base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+{% block blogactive %} active {% endblock blogactive %}
+
+{% block body %}
+
+<section id="blog" class="blog">
+      <div class="container my-4" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-8 entries">
+            {% for i in allposts %}
+            <article class="entry">
+              <div class="entry-img">
+                <img src="/media/{{i.images}}" alt="" class="img-fluid">
+              </div>
+                <strong class="d-inline-block text-danger mt-3">{{i.author}}</strong>
+              <h2 class="entry-title">
+                <a href="/blog/{{i.slug}}">{{i.title}}</a>
+              </h2>
+              <div class="entry-content">
+                {{i.content|truncatechars:200|safe}}
+              </div>
+                <div class="read-more">
+                  <a href="/blog/{{i.slug}}" role="button" class="btn btn-danger mb-4">Read More</a>
+                </div>
+            </article><!-- End blog entry -->
+        {% endfor %}
+          </div>
+<div class="col-lg-4">
+
+            <div class="sidebar">
+
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form method="get" action="/search">
+                  <input type="text" name="query" id="query">
+                  <button class="btn btn-danger" type="submit">Search</button>
+                </form>
+              </div><!-- End sidebar search formn-->
+              <h3 class="sidebar-title">Recent Posts</h3>
+              {% for i in allposts %}
+              <div class="sidebar-item recent-posts">
+                <div class="post-item clearfix mb-2">
+                  <img src="/media/{{i.images}}" alt="">
+                  <a href="/blog/{{i.slug}}"><h4 style="color: #343a40;">{{i.title|truncatechars:60}}</h4></a>
+                </div>
+                {% endfor %}
+              </div><!-- End sidebar recent posts-->
+            </div><!-- End sidebar -->
+          </div>
+        </div>
+      </div>
+</section>
+ {% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block body %}
+<div class="container" >
+    <div class="jumbotron my-3" style="background-image: url('/static/home/img/background-0.jpg');
+    background-repeat: no-repeat; background-size: cover;">
+      <h1 class="display-4"><b>Welcome to Daily Dose</b></h1>
+      <p class="lead"><b>Don’t focus on having a great blog. Focus on producing a blog that’s great for your readers.</b></p>
+      <hr class="my-4">
+      <p>Blogging is not rocket science. It’s about being yourself and putting what you have into it.</p>
+      <a class="btn btn-danger btn-lg" href="/blog" role="button">Go to Blog</a>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <h2>Latest Blogposts</h2>
+    {% for i in allposts %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-danger">{{i.author}}</strong>
+            <h3 class="mb-0">{{i.title}}</h3>
+            <div class="mb-1 text-muted">{{i.datetime}}</div>
+            <p class="card-text mb-auto">{{i.content|truncatechars:200|safe}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+ {% endblock %}
